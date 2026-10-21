@@ -1,0 +1,18 @@
+# cask 문법 검사. 잡 이름 "cask" 는 main/develop 보호 ruleset 의 필수 상태 검사다.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  cask:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: brew style
+        run: brew style Casks/
