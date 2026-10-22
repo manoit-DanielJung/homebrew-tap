@@ -1,6 +1,6 @@
 cask "appremover" do
-  version "1.1.0"
-  sha256 "0658bd5ba2e0c21b22c28311caa9c5a5b6deddf2798ecd57f4fbf71c133a98f7"
+  version "1.2.0"
+  sha256 "8f3ed56e433f56572103010562450a01b19e7ae721718e1086843fac89bff3f3"
 
   url "https://appremover.intentcode.co.kr/download/AppRemover-#{version}.dmg"
   name "AppRemover"
