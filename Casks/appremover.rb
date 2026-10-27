@@ -1,6 +1,6 @@
 cask "appremover" do
-  version "1.5.0"
-  sha256 "bb22993c6eddab250a621560728b44a0a713e9bf60cf36a8163e10857e0730d9"
+  version "1.6.0"
+  sha256 "37a1424108d8920790f33f0c717bc2d79408f2f84e2a386ca491e062492bd498"
 
   url "https://appremover.intentcode.co.kr/download/AppRemover-#{version}.dmg"
   name "AppRemover"
@@ -17,11 +17,12 @@ cask "appremover" do
 
   app "AppRemover.app"
 
-  uninstall launchctl: "kr.co.intentcode.appremover.helper"
-
-  zap trash: [
-    "~/Library/Application Support/AppRemover",
-    "~/Library/Preferences/kr.co.intentcode.appremover.plist",
-    "~/Library/Saved Application State/kr.co.intentcode.appremover.savedState",
-  ]
+  # 관리자 도우미는 앱이 SMAppService로 등록·관리한다. uninstall(업그레이드 때도 실행됨)에서 내리면
+  # macOS 설정에는 켜짐으로 남은 채 재부팅 전까지 응답하지 않으므로, 완전 삭제(zap) 때만 내린다.
+  zap launchctl: "kr.co.intentcode.appremover.helper",
+      trash:     [
+        "~/Library/Application Support/AppRemover",
+        "~/Library/Preferences/kr.co.intentcode.appremover.plist",
+        "~/Library/Saved Application State/kr.co.intentcode.appremover.savedState",
+      ]
 end
